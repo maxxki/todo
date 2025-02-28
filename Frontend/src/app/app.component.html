@@ -1,0 +1,25 @@
+<div class="container">
+  <h1>🚀 Meine To-Do App</h1>
+
+  <div class="input-bereich">
+    <input
+      type="text"
+      placeholder="✨ Was muss erledigt werden?"
+      #todoInput
+      (keyup.enter)="addTask(todoInput.value); todoInput.value=''"
+    />
+    <button (click)="addTask(todoInput.value); todoInput.value=''">Hinzufügen ➕</button>
+  </div>
+
+  <ul class="todo-liste">
+    <li
+      *ngFor="let task of tasks; let i = index"
+      [ngClass]="{'erledigt': task.erledigt}"
+    >
+      <input type="checkbox" [id]="'task-' + i" [(ngModel)]="task.erledigt">
+      <label [for]="'task-' + i">{{ task.text }}</label>
+      <button class="delete-btn" (click)="deleteTask(i)">❌</button>
+    </li>
+  </ul>
+</div>
+
